@@ -1,26 +1,23 @@
 package spacewzrd.goodies.java;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DocServlet
+ * Servlet implementation class UserServlet
  */
-@WebServlet("/DocServlet")
-public class DocServlet extends HttpServlet {
+@WebServlet("/UserServlet")
+public class UserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DocServlet() {
+    public UserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +27,21 @@ public class DocServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/NewDoc.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/NewUser.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String title = request.getParameter("title");
-	    String body = request.getParameter("body");
-		DocManager.newdoc(title, body);
+		// TODO Auto-generated method stub
+
+		String username = request.getParameter("username");
+	    String email = request.getParameter("email");
+	    String password = request.getParameter("password");
+		UserManager.newuser(username, email, password);
 		
 		response.sendRedirect("/Goodies");
-
 	}
 
 }

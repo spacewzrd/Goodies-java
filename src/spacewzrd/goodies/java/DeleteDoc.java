@@ -1,26 +1,23 @@
 package spacewzrd.goodies.java;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class DocServlet
+ * Servlet implementation class DeleteDoc
  */
-@WebServlet("/DocServlet")
-public class DocServlet extends HttpServlet {
+@WebServlet("/DeleteDoc")
+public class DeleteDoc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DocServlet() {
+    public DeleteDoc() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +27,19 @@ public class DocServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/NewDoc.jsp").forward(request, response);
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String num = request.getParameter("button");
+		DocManager manager = new DocManager();
+		manager.delete(num);
 		
-		String title = request.getParameter("title");
-	    String body = request.getParameter("body");
-		DocManager.newdoc(title, body);
-		
-		response.sendRedirect("/Goodies");
-
+		response.sendRedirect("Goodies");
 	}
 
 }
